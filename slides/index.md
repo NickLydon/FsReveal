@@ -1,23 +1,45 @@
-- title : FsReveal
-- description : Introduction to FsReveal
-- author : Karlkim Suwanmongkol
+- title : F# computation expressions
+- description : Introduction to F# computation expressions
+- author : Nicholas Lydon
 - theme : moon
 - transition : default
 
 ***
 
 ### Computation Expressions
-
-- A framework for easily creating beautiful presentations using HTML.
+### in F#
 
 ***
 
-### Syntax Highlighting
+### Monads
 
-#### F# (with tooltips)
+- Idea from Haskell
+- Type wrapper with two operations
+- return `'T -> M<'T>`
+- bind `M<'T> * ('T -> M<'U>) -> M<'U>`
 
-    let a = 5
-    let factorial x = [1..x] |> List.reduce (*)
-    let c = factorial a
+---
+
+### C# has IEnumerable<'T> 
+- generic wrapper type to access sequences of another type
+- return implemented by `yield`
+- bind implemented by `SelectMany`
+
+
+***
+
+	open System
+
+    type MaybeBuilder() =
+ 	 
+	    member x.Return(parameter) = Some parameter
+	    
+	    member x.Bind(parameter, nextExpression) = 
+	        Console.WriteLine("bind: " + (string)parameter) 
+	        |> ignore
+	 
+	        match parameter with
+	        | Some x -> nextExpression x
+	        | None -> None
 
 
