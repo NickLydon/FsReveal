@@ -79,8 +79,8 @@ This example will continue chaining expressions until it finishes successfully, 
 ---
 
     let readIntFromConsole() =
-        let input = System.Console.ReadLine()
-        let canParse,parsed = System.Int32.TryParse input
+        let input = Console.ReadLine()
+        let canParse,parsed = Int32.TryParse input
         if canParse then Some parsed else None
 
     let x = maybe {
@@ -94,7 +94,7 @@ This example will continue chaining expressions until it finishes successfully, 
 
 This computation won't continue if a is not an integer
 
-*** 
+--- 
 
     let x =
         let rec loop acc = maybe {
